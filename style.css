@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+:root{
+    --primary:#2C8F8F;
+    --sec: #ffffff;
+    --tert: #1C5C5C;
+    --bg: #0C2929;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 85%;
+    background: var(--sec);
+}
+
+/* TOGGLE */
+.sidebar-toggle{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+
+    cursor: pointer;
+
+
+    animation: zoomOut 2s infinite forwards;
+}
+
+.sidebar-toggle .line{
+    width: 25px;
+    padding: 1.5px;
+    background: var(--bg);
+    transition: all .4s ease-in-out;
+}
+
+.sidebar-toggle:hover .line{
+    background: var(--primary);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--sec);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+
+    transform: translateX(-100%);/*Shifts the sidebar out of view.*/
+    transition: all .3s ease-out;
+}
+
+.open{
+    transform: translateX(0);
+    /*Brings it back into view. 
+    By the way, next time you are making this, put it after the hidden to save yourself the stress. Omo.🤧*/
+}
+
+.sidebar h2{
+    padding: 1rem;
+}
+
+.sidebar a{
+    color: var(--sec);
+    padding: 2rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all .3s ease-out;
+    p{
+        transition: transform .3s ease-out;
+    }
+}
+
+.sidebar a:hover{
+    background: var(--primary);
+    p{
+        transform: translatex(1rem);
+    }
+}
+
+
+
+/* CROSS */
+.title{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.cross {
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cross p {
+    animation: rotateBack 0.4s ;
+}
+
+.cross p:hover {
+    animation: rotate 0.4s ;
+}
+
+
+
+/* KEYFRAMES */
+
+@keyframes zoomOut {
+    0% { transform: scale(1.5);}
+    50% { transform: scale(1);}
+    100% { transform: scale(1.5);}
+}
+
+@keyframes rotate {
+    0% { transform: rotateZ(0deg); }
+    100% { transform: rotateZ(360deg); }
+}
+
+@keyframes rotateBack {
+    from { transform: rotateZ(360deg); }
+    to   { transform: rotateZ(0deg); }
+}
+
+
+
+/* MEDIA QUERIES */
+@media (min-width: 800px){
+.sidebar{
+    max-width: 35%;
+}
+}
